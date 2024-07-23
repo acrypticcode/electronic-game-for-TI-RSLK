@@ -5,26 +5,21 @@
 //** Section: 1
 //** Side B
 //** Seat 25
-//** This is the base project for several activities and labs throughout
-//** the course.  The outline provided below isn't necessarily *required*
-//** by a C program; however, this format is required within ENGR-2350
-//** to ease debugging/grading by the staff.
 /**********************************************************************/
 
-// We'll always add this include statement. This basically takes the
-// code contained within the "engr_2350_msp432.h" file and adds it here.
+// include statements
 #include "engr2350_msp432.h"
 #include <time.h>
 #include <stdlib.h>
 
-// Add function prototypes here as needed.
+// function prototypes
 void Timer_Init(void);
 void GPIO_Init(void);
 void Timer_ISR(void);
 void life_logic(void);
 void new_round(void);
 void setRGB(int8_t color);
-// Add global variables here as needed.
+// global variables
 Timer_A_UpModeConfig config;
 uint8_t pb1;
 uint8_t BMP2;
@@ -46,10 +41,9 @@ uint8_t all_zero = 0;
 
 int main(void)    /*** Main Function ***/
 {  
-    // Add local variables here, as needed.
+    // local variables
 
-    // We always call the "SysInit()" first to set up the microcontroller
-    // for how we are going to use it.
+    // call the "SysInit()" first to set up the microcontroller
     SysInit();
     GPIO_Init();
     Timer_Init();
@@ -57,7 +51,7 @@ int main(void)    /*** Main Function ***/
 
 
 
-    // Place initialization code (or run-once) code here
+    // initialization code
     printf("Welcome to our Speed Match Game! You will attempt to match the color randomly selected on the terminal with the flashing lights on the car, by pressing BMP1. Press the Push Button to start!\r\n");
     setRGB(7);
     srand(time(0));
@@ -71,10 +65,9 @@ int main(void)    /*** Main Function ***/
     while(1)
     {  
         cycling();
-        // Place code that runs continuously in here
+        // code that runs continuously here
 
         if(game_over == 1){
-            //printf("game over\r\n");
 
             if(GPIO_getInputPinValue(GPIO_PORT_P3, GPIO_PIN3)){
                 printf("NEW GAME\r\n");
@@ -115,11 +108,6 @@ int main(void)    /*** Main Function ***/
                     GPIO_setOutputHighOnPin(GPIO_PORT_P6, GPIO_PIN0);
                     GPIO_setOutputLowOnPin(GPIO_PORT_P6, GPIO_PIN1);
                 }
-
-
-
-
-
 
             }else{
                 if(!GPIO_getInputPinValue(GPIO_PORT_P4, GPIO_PIN2)){
@@ -166,7 +154,7 @@ int main(void)    /*** Main Function ***/
     }   
 }   
 
-// Add function declarations here as needed
+// function declarations
 
 void GPIO_Init(void){
 
@@ -196,7 +184,6 @@ void Timer_Init(void){
     //Registering the ISR
     Timer_A_registerInterrupt(TIMER_A1_BASE, TIMER_A_CCRX_AND_OVERFLOW_INTERRUPT, Timer_ISR);
 
-    //Timer_A_startCounter(TIMER_A1_BASE, TIMER_A_UP_MODE);
 }
 
 void setRGB(int8_t color){
