@@ -1,6 +1,6 @@
 # Electronic Game for TI-RSLK
 
-Author: Curran Flanders
+Authors: Curran Flanders and Niko Danas
 
 Completion Date: 02/26/2024
 
