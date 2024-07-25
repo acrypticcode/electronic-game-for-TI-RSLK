@@ -2,6 +2,6 @@
 
 Author: Curran Flanders
 
-Completion Date: 04/06/2024
+Completion Date: 02/26/2024
 
 Purpose: Game requiring user to press buttons quickly in response to colored lights.
